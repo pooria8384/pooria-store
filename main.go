@@ -21,6 +21,8 @@ func main() {
 		return
 	}
 
+	config.RunMigrations()
+
 	postgresDb := config.ConnectToSeedUserDB()
 	defer postgresDb.Close()
 
