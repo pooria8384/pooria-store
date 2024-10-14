@@ -35,7 +35,7 @@ func ConnectDefaultDB() *sql.DB {
 }
 
 func ConnectToSeedUserDB() *sql.DB {
-	// اتصال به دیتابیس `seed-user`
+
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable TimeZone=UTC",
 		os.Getenv("DB_HOST"),
 		os.Getenv("DB_PORT"),
