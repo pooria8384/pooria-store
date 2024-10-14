@@ -11,6 +11,7 @@ require (
 )
 
 require (
+	ariga.io/atlas-go-sdk v0.6.4 // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
