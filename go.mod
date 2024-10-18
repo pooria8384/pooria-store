@@ -6,12 +6,11 @@ require (
 	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/joho/godotenv v1.5.1
-	github.com/lib/pq v1.10.2
+	github.com/lib/pq v1.10.9
 	golang.org/x/crypto v0.28.0
 )
 
 require (
-	ariga.io/atlas-go-sdk v0.6.4 // indirect
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect

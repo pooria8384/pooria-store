@@ -1,4 +1,4 @@
-package db
+package storer
 
 import (
 	"database/sql"
@@ -8,21 +8,21 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type UserStore interface {
+type User interface {
 	CreateUser(name, email, password string) error
 	FindUserByEmail(email string) (*types.User, error)
 }
-type PostGresUserStore struct {
+type PostGresUser struct {
 	conn *sql.DB
 }
 
-func NewPostGresUserStore(conn *sql.DB) *PostGresUserStore {
-	return &PostGresUserStore{
+func NewPostGresUserStore(conn *sql.DB) *PostGresUser {
+	return &PostGresUser{
 		conn: conn,
 	}
 }
 
-func (p *PostGresUserStore) CreateUser(name, email, password string) error {
+func (p *PostGresUser) CreateUser(name, email, password string) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return fmt.Errorf("error hashing password: %v", err)
@@ -48,7 +48,7 @@ func (p *PostGresUserStore) CreateUser(name, email, password string) error {
 	return nil
 }
 
-func (p *PostGresUserStore) FindUserByEmail(email string) (*types.User, error) {
+func (p *PostGresUser) FindUserByEmail(email string) (*types.User, error) {
 	user := &types.User{}
 	query := "SELECT id, name, email, password FROM users WHERE email=$1"
 	err := p.conn.QueryRow(query, email).Scan(&user.ID, &user.Name, &user.Email, &user.Password)
