@@ -2,6 +2,7 @@ package server
 
 import (
 	"pooria-store/handlers"
+	"sync"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -10,13 +11,19 @@ type Server struct {
 	App *fiber.App
 }
 
-func NewServer(userHandler *handlers.User, authHandler *handlers.AuthUser) *Server {
-	app := fiber.New()
-	app.Post("/login", authHandler.Login)
+var serverInstance *Server
+var serverOnce sync.Once
 
-	return &Server{
-		App: app,
-	}
+func NewServer(userHandler *handlers.User, authHandler *handlers.AuthUser) *Server {
+	serverOnce.Do(func() {
+		app := fiber.New()
+		app.Post("/login", authHandler.Login)
+
+		serverInstance = &Server{
+			App: app,
+		}
+	})
+	return serverInstance
 }
 
 func (s *Server) Start(port string) error {
