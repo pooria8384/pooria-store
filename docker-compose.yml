@@ -1,0 +1,29 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres-container
+      POSTGRES_PASSWORD: 13841385
+      POSTGRES_DB: pooria-store 
+    ports:
+      - "5432:5432"
+    volumes:
+      - /media/pooria/0f5c48f1-e5b4-448b-b957-030263e2cd15/postgres-data:/var/lib/postgresql/data
+    networks:
+      - pgnetwork 
+
+  pgadmin:
+    container_name: pgadmin-container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mbh3pt@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 13841385
+    ports:
+      - "8080:80" 
+    networks:
+      - pgnetwork 
+    depends_on:
+      - postgres
+networks:
+  pgnetwork:
