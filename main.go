@@ -1,10 +1,10 @@
 package main
 
 import (
-	"my-project/config"
-	"my-project/handlers"
-	"my-project/server"
-	"my-project/storer"
+	"pooria-store/config"
+	"pooria-store/handlers"
+	"pooria-store/server"
+	"pooria-store/storer"
 )
 
 func init() {

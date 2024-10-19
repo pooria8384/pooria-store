@@ -1,4 +1,4 @@
-module my-project
+module pooria-store
 
 go 1.23.0
 

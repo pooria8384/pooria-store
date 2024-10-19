@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"fmt"
-	"my-project/auth"
-	"my-project/storer"
-	"my-project/types"
+	"pooria-store/auth"
+	"pooria-store/storer"
+	"pooria-store/types"
 
 	"golang.org/x/crypto/bcrypt"
 )

@@ -1,7 +1,7 @@
 package server
 
 import (
-	"my-project/handlers"
+	"pooria-store/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

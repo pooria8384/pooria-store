@@ -3,7 +3,8 @@ package storer
 import (
 	"database/sql"
 	"fmt"
-	"my-project/types"
+	"pooria-store/types"
+	"sync"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -16,10 +17,16 @@ type PostGresUser struct {
 	conn *sql.DB
 }
 
+var userInstance *PostGresUser
+var userOnce sync.Once
+
 func NewPostGresUserStore(conn *sql.DB) *PostGresUser {
-	return &PostGresUser{
-		conn: conn,
-	}
+	userOnce.Do(func() {
+		userInstance = &PostGresUser{
+			conn: conn,
+		}
+	})
+	return userInstance
 }
 
 func (p *PostGresUser) CreateUser(name, email, password string) error {
