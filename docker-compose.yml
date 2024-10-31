@@ -21,6 +21,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 13841385
     ports:
       - "8080:80" 
+    volumes:
+      - /media/pooria/0f5c48f1-e5b4-448b-b957-030263e2cd15/pgadmin-data:/var/lib/pgadmin
     networks:
       - pgnetwork 
     depends_on:
