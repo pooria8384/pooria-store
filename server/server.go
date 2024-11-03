@@ -1,6 +1,7 @@
 package server
 
 import (
+	"pooria-store/auth"
 	"pooria-store/handlers"
 	"sync"
 
@@ -18,6 +19,7 @@ func NewServer(userHandler *handlers.User, authHandler *handlers.AuthUser) *Serv
 	serverOnce.Do(func() {
 		app := fiber.New()
 		app.Post("/login", authHandler.Login)
+		app.Get("/register/:id", auth.AuthMiddleware, handlers.Register)
 
 		serverInstance = &Server{
 			App: app,

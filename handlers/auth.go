@@ -1,6 +1,8 @@
 package handlers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 type AuthUser struct {
 	AuthUser *User
@@ -33,4 +35,8 @@ func (h *AuthUser) Login(c *fiber.Ctx) error {
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{"token": token, "user": user})
+}
+
+func Register(c *fiber.Ctx) error {
+	return c.JSON("user register seccusfully")
 }
